@@ -2,6 +2,7 @@ import "./SignUp.scss";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { onRegisterHandler, onTextHandler } from '../../util/Handler';
+import { checkDupId } from '../../util/Func'
 
 function SignUp() {
     const navigate = useNavigate();
@@ -15,14 +16,16 @@ function SignUp() {
                     onChange={(e) => {
                         onTextHandler(e, setId)
                     }} placeholder='아이디' />
-                <button className="dupCheckBtn">중복 확인</button>
+                <button className="dupCheckBtn" onClick={() => checkDupId(id, setId)}>
+                    중복 확인
+                </button>
                 <br />
                 <input type="password" value={password}
                     onChange={(e) => {
                         onTextHandler(e, setPassword)
                     }} placeholder='비밀번호' />
                 <br />
-                <button className="registerButton" onClick={(e) => {onRegisterHandler(e, id, password, navigate)}}>
+                <button className="registerButton" onClick={(e) => { onRegisterHandler(e, id, password, navigate) }}>
                     회원가입 하기
                 </button>
             </div>

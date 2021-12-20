@@ -23,10 +23,6 @@ public class JwtUserDetailsService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
 
-    public String loadUserRoleByUsername (String username) {
-        return memberRepository.findByUsername(username).get().getRole();
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUsername(username)
